@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = ({ user, approveMode}) => {
+const AdminStoryCards = ({ user, approveMode }) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
@@ -75,12 +75,14 @@ const AdminStoryCards = ({ user, approveMode}) => {
 
   useEffect(() => {
     if (approveMode) {
-      fetch("/api/admin-artwork?status=submitted")
+      fetch(
+        "https://sea-lion-app-fylpk.ondigitalocean.app/api/admin-artwork?status=submitted"
+      )
         .then((res) => res.json())
         .then((data) => setSubmittedArtwork(data))
         .catch((err) => console.log(err));
     } else {
-      fetch("/api/admin-artwork")
+      fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/admin-artwork")
         .then((res) => res.json())
         .then((data) => setSubmittedArtwork(data))
         .catch((err) => console.log(err));
@@ -89,7 +91,7 @@ const AdminStoryCards = ({ user, approveMode}) => {
 
   // function to accept/reject submitted artwork
   const changeStatus = (id, newStatus) => {
-    fetch(`/api/artwork/${id}`, {
+    fetch(`https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -110,7 +112,9 @@ const AdminStoryCards = ({ user, approveMode}) => {
       .then((data) => {
         if (data.success) {
           alert(`Item successfully ${newStatus}`);
-          fetch("/api/artwork?status=submitted")
+          fetch(
+            "https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork?status=submitted"
+          )
             .then((res) => res.json())
             .then((data) => setSubmittedArtwork(data))
             .catch((err) => console.log(err));
@@ -122,7 +126,7 @@ const AdminStoryCards = ({ user, approveMode}) => {
 
   // function to delete an artwork item
   const deleteArtwork = (id) => {
-    fetch(`/api/artwork/${id}`, {
+    fetch(`https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +142,9 @@ const AdminStoryCards = ({ user, approveMode}) => {
       .then((data) => {
         if (data.success) {
           alert(data.success);
-          fetch("/api/admin-artwork?status=submitted")
+          fetch(
+            "https://sea-lion-app-fylpk.ondigitalocean.app/api/admin-artwork?status=submitted"
+          )
             .then((res) => res.json())
             .then((data) => setSubmittedArtwork(data))
             .catch((err) => console.log(err));
@@ -179,7 +185,7 @@ const AdminStoryCards = ({ user, approveMode}) => {
                         component="img"
                         alt={artwork.title}
                         height="240"
-                        image={`/api/media/${artwork.content_link}`}
+                        image={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${artwork.content_link}`}
                         title={artwork.title}
                       />
                     )}
@@ -191,14 +197,16 @@ const AdminStoryCards = ({ user, approveMode}) => {
                         controls
                       >
                         <source
-                          src={`/api/media/${artwork.content_link}`}
+                          src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${artwork.content_link}`}
                           type="video/mp4"
                         />
                       </video>
                     )}
                     {artwork.content_type === "audio" && (
                       <audio className={classes.audio} controls>
-                        <source src={`/api/media/${artwork.content_link}`} />
+                        <source
+                          src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${artwork.content_link}`}
+                        />
                       </audio>
                     )}
 

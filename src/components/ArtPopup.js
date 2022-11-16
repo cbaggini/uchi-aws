@@ -26,18 +26,18 @@ const useStyles = makeStyles({
 });
 
 const ArtPopup = ({
-	id,
-	title,
-	content_type,
-	artist_name,
-	content_text,
-	content_link,
-	city,
-	country,
+  id,
+  title,
+  content_type,
+  artist_name,
+  content_text,
+  content_link,
+  city,
+  country,
 }) => {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	return (
+  return (
     <Card key={id} className={classes.root}>
       <CardContent>
         {content_type === "image" && (
@@ -46,18 +46,23 @@ const ArtPopup = ({
             component="img"
             alt={title}
             height="240"
-            image={`/api/media/${content_link}`}
+            image={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${content_link}`}
             title={title}
           />
         )}
         {content_type === "video" && (
           <video width="100%" height="240" controls>
-            <source src={`/api/media/${content_link}`} type="video/mp4" />
+            <source
+              src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${content_link}`}
+              type="video/mp4"
+            />
           </video>
         )}
         {content_type === "audio" && (
           <audio controls style={{ display: "flex", width: "100%" }}>
-            <source src={`/api/media/${content_link}`} />
+            <source
+              src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${content_link}`}
+            />
           </audio>
         )}
         <Typography variant="h3" className={classes.title} gutterBottom>

@@ -12,10 +12,11 @@ const AdminPanel = ({ user, setUser }) => {
 
   const [approveMode, setApproveMode] = useState(true);
   const [createMode, setCreateMode] = useState(false);
-  
 
   useEffect(() => {
-    fetch("/api/ping", { credentials: "include" })
+    fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/ping", {
+      credentials: "include",
+    })
       .then((res) => {
         if (res.status === 401) {
           history.push("/login");
@@ -27,16 +28,16 @@ const AdminPanel = ({ user, setUser }) => {
   }, []);
 
   const handleLogout = () => {
-    fetch("/api/logout").then((res) => {
-      if (res.status != 200) {
-        alert("Could not log out");
-      } else {
-        history.push("/");
+    fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/logout").then(
+      (res) => {
+        if (res.status != 200) {
+          alert("Could not log out");
+        } else {
+          history.push("/");
+        }
       }
-    });
+    );
   };
-
-  
 
   return (
     <>

@@ -40,7 +40,10 @@ const Reset = () => {
   let history = useHistory();
 
   useEffect(() => {
-    fetch("/api/reset" + window.location.search).then((res) => {
+    fetch(
+      "https://sea-lion-app-fylpk.ondigitalocean.app/api/reset" +
+        window.location.search
+    ).then((res) => {
       if (res.ok) {
         setIsValid(true);
       }
@@ -50,13 +53,16 @@ const Reset = () => {
   const handleReset = (e) => {
     e.preventDefault();
     if (newPassword === confirmPassword) {
-      fetch(`/api/admin/${userId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ pass: newPassword }),
-      }).then((res) => {
+      fetch(
+        `https://sea-lion-app-fylpk.ondigitalocean.app/api/admin/${userId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ pass: newPassword }),
+        }
+      ).then((res) => {
         if (res.status === 200) {
           alert(
             "Password reset successful. You can now log in with your new credentials"

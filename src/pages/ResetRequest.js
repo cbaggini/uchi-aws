@@ -38,7 +38,7 @@ const ResetRequest = () => {
   //Send a post api request to login admin
   const handleReset = (e) => {
     e.preventDefault();
-    fetch(`/api/request-reset`, {
+    fetch(`https://sea-lion-app-fylpk.ondigitalocean.app/api/request-reset`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

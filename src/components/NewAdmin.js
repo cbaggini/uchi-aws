@@ -28,7 +28,7 @@ const NewAdmin = ({ setCreateMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username.length > 0 && email.length > 0) {
-      fetch(`/api/admin`, {
+      fetch(`https://sea-lion-app-fylpk.ondigitalocean.app/api/admin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,8 +38,8 @@ const NewAdmin = ({ setCreateMode }) => {
         if (res.status === 200) {
           alert("New account created successfully");
           setCreateMode(false);
-		} else if (res.status === 400) {
-			alert("A user with this username or email address already exists")
+        } else if (res.status === 400) {
+          alert("A user with this username or email address already exists");
         } else {
           alert("Account creation was not successful");
         }

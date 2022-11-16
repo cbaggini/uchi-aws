@@ -11,10 +11,10 @@ export function Home() {
   const [backupData, setBackupData] = useState([]);
   const [view, setView] = useState("map");
   const [showIntro, setShowIntro] = useState(true);
-  const [hideIntro, setHideIntro] = useState('');
+  const [hideIntro, setHideIntro] = useState("");
 
   useEffect(() => {
-    fetch("/api/artwork")
+    fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork")
       .then((res) => res.json())
       .then((data) => {
         setApprovedArtwork(data);
@@ -40,7 +40,9 @@ export function Home() {
           setShowIntro={setShowIntro}
           setView={setView}
         />
-        {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
+        {view === "listing" && (
+          <ArtistsStoryCards approvedArtwork={approvedArtwork} />
+        )}
         {view === "map" && <Map approvedArtwork={approvedArtwork} />}
         <Footer />
       </main>

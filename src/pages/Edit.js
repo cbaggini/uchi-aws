@@ -7,62 +7,64 @@ import ListItem from "@material-ui/core/ListItem";
 import MapForm from "../components/MapForm";
 
 const useStyles = makeStyles((theme) => ({
-	appBar: {
-		position: "absolute",
-		height: "4em",
-		backgroundColor: "#7d69af",
-		fontFamily: "Righteous",
-		marginBottom: "2em",
-	},
-	title: {
-		marginLeft: theme.spacing(5),
-		display: "flex",
-		justifyContent: "space-between",
-		width: "100%",
-		margin: "auto",
-		justifyContent: "center",
-		alignItems: "center",
-		fontFamily: "Righteous",
-	},
-	form: {
-		display: "grid",
-		width: "50%",
-		margin: "auto",
-		placeItems: "center",
-		margin: "4em 25% 0 25%",
-		fontFamily: "Righteous",
-		backgroundColor: "#d1c2f7",
-	},
-	map_header: {
-		fontSize: "1.25em",
-	},
-	media: {
-		color: "transparent",
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		width: "6em",
-		fontFamily: "Righteous",
-		fontSize: "1.5rem",
-	},
+  appBar: {
+    position: "absolute",
+    height: "4em",
+    backgroundColor: "#7d69af",
+    fontFamily: "Righteous",
+    marginBottom: "2em",
+  },
+  title: {
+    marginLeft: theme.spacing(5),
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    margin: "auto",
+    justifyContent: "center",
+    alignItems: "center",
+    fontFamily: "Righteous",
+  },
+  form: {
+    display: "grid",
+    width: "50%",
+    margin: "auto",
+    placeItems: "center",
+    margin: "4em 25% 0 25%",
+    fontFamily: "Righteous",
+    backgroundColor: "#d1c2f7",
+  },
+  map_header: {
+    fontSize: "1.25em",
+  },
+  media: {
+    color: "transparent",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "6em",
+    fontFamily: "Righteous",
+    fontSize: "1.5rem",
+  },
 }));
 
 const Edit = ({ user, setUser }) => {
-	let history = useHistory();
-	const location = useLocation();
-	const classes = useStyles();
+  let history = useHistory();
+  const location = useLocation();
+  const classes = useStyles();
 
-	useEffect(() => {
-		fetch("/api/ping", { credentials: "include" })
-			.then((res) => {
-				if (res.status === 401) {
-					history.push("/login");
-				} else {
-					return res.json();
-				}
-			})
-			.then((data) => setUser(data));
-	}, []);
+  useEffect(() => {
+    fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/ping", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          history.push("/login");
+        } else {
+          return res.json();
+        }
+      })
+      .then((data) => setUser(data));
+  }, []);
 
   const validateForm = () => {
     if (uploadForm.content_type === "") {
@@ -89,7 +91,7 @@ const Edit = ({ user, setUser }) => {
   };
 
   let initialForm = {};
-  let initialCoordForm = {}
+  let initialCoordForm = {};
   if (location.state) {
     initialForm = Object.keys(location.state.artwork)
       .filter(
@@ -98,27 +100,30 @@ const Edit = ({ user, setUser }) => {
           location.state.artwork[k] !== null
       )
       .reduce((a, k) => ({ ...a, [k]: location.state.artwork[k] }), {});
-	initialCoordForm = {lat: location.state.artwork.lat}
+    initialCoordForm = { lat: location.state.artwork.lat };
   }
 
   const [uploadForm, setUploadForm] = useState(initialForm);
   const [coordUploadForm, setCoordUploadForm] = useState(initialCoordForm);
 
-	const handleChange = (e) => {
-		setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
-	};
+  const handleChange = (e) => {
+    setUploadForm({ ...uploadForm, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const validate = validateForm();
     if (validate) {
-      fetch(`/api/artwork/${location.state.artwork.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...uploadForm }),
-      }).then(() => {
+      fetch(
+        `https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork/${location.state.artwork.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...uploadForm }),
+        }
+      ).then(() => {
         alert("Item successfully edited");
         history.push("/admin");
       });
@@ -127,7 +132,7 @@ const Edit = ({ user, setUser }) => {
     }
   };
 
-	return (
+  return (
     <div className="upload-form">
       {user && user.username && location.state && (
         <>
@@ -217,7 +222,7 @@ const Edit = ({ user, setUser }) => {
                     height="240px"
                     width="auto"
                     margin="auto"
-                    src={`/api/media/${uploadForm.content_link}`}
+                    src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${uploadForm.content_link}`}
                   />
                 </div>
               </ListItem>
@@ -226,7 +231,7 @@ const Edit = ({ user, setUser }) => {
               <ListItem>
                 <video width="100%" height="240" controls>
                   <source
-                    src={`/api/media/${uploadForm.content_link}`}
+                    src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${uploadForm.content_link}`}
                     type="video/mp4"
                   />
                 </video>
@@ -235,7 +240,9 @@ const Edit = ({ user, setUser }) => {
             {uploadForm.content_type === "audio" && (
               <ListItem>
                 <audio controls style={{ display: "flex", width: "100%" }}>
-                  <source src={`/api/media/${uploadForm.content_link}`} />
+                  <source
+                    src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${uploadForm.content_link}`}
+                  />
                 </audio>
               </ListItem>
             )}
