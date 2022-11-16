@@ -11,7 +11,7 @@ export function Home() {
   const [backupData, setBackupData] = useState([]);
   const [view, setView] = useState("map");
   const [showIntro, setShowIntro] = useState(true);
-  const [hideIntro, setHideIntro] = useState('');
+  const [hideIntro, setHideIntro] = useState("");
 
   useEffect(() => {
     fetch("/api/artwork")
@@ -40,7 +40,9 @@ export function Home() {
           setShowIntro={setShowIntro}
           setView={setView}
         />
-        {view === "listing" && <ArtistsStoryCards approvedArtwork={approvedArtwork} />}
+        {view === "listing" && (
+          <ArtistsStoryCards approvedArtwork={approvedArtwork} />
+        )}
         {view === "map" && <Map approvedArtwork={approvedArtwork} />}
         <Footer />
       </main>

@@ -26,18 +26,18 @@ const useStyles = makeStyles({
 });
 
 const ArtPopup = ({
-	id,
-	title,
-	content_type,
-	artist_name,
-	content_text,
-	content_link,
-	city,
-	country,
+  id,
+  title,
+  content_type,
+  artist_name,
+  content_text,
+  content_link,
+  city,
+  country,
 }) => {
-	const classes = useStyles();
+  const classes = useStyles();
 
-	return (
+  return (
     <Card key={id} className={classes.root}>
       <CardContent>
         {content_type === "image" && (

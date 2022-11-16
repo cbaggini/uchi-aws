@@ -48,7 +48,7 @@ const useStyles = makeStyles({
   },
 });
 
-const AdminStoryCards = ({ user, approveMode}) => {
+const AdminStoryCards = ({ user, approveMode }) => {
   const classes = useStyles();
 
   const [submittedArtwork, setSubmittedArtwork] = useState([]);
