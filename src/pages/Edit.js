@@ -53,7 +53,9 @@ const Edit = ({ user, setUser }) => {
   const classes = useStyles();
 
   useEffect(() => {
-    fetch("/api/ping", { credentials: "include" })
+    fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/ping", {
+      credentials: "include",
+    })
       .then((res) => {
         if (res.status === 401) {
           history.push("/login");
@@ -112,13 +114,16 @@ const Edit = ({ user, setUser }) => {
     e.preventDefault();
     const validate = validateForm();
     if (validate) {
-      fetch(`/api/artwork/${location.state.artwork.id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...uploadForm }),
-      }).then(() => {
+      fetch(
+        `https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork/${location.state.artwork.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ ...uploadForm }),
+        }
+      ).then(() => {
         alert("Item successfully edited");
         history.push("/admin");
       });
@@ -217,7 +222,7 @@ const Edit = ({ user, setUser }) => {
                     height="240px"
                     width="auto"
                     margin="auto"
-                    src={`/api/media/${uploadForm.content_link}`}
+                    src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${uploadForm.content_link}`}
                   />
                 </div>
               </ListItem>
@@ -226,7 +231,7 @@ const Edit = ({ user, setUser }) => {
               <ListItem>
                 <video width="100%" height="240" controls>
                   <source
-                    src={`/api/media/${uploadForm.content_link}`}
+                    src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${uploadForm.content_link}`}
                     type="video/mp4"
                   />
                 </video>
@@ -235,7 +240,9 @@ const Edit = ({ user, setUser }) => {
             {uploadForm.content_type === "audio" && (
               <ListItem>
                 <audio controls style={{ display: "flex", width: "100%" }}>
-                  <source src={`/api/media/${uploadForm.content_link}`} />
+                  <source
+                    src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${uploadForm.content_link}`}
+                  />
                 </audio>
               </ListItem>
             )}

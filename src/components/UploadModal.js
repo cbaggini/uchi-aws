@@ -166,7 +166,7 @@ const UploadModal = () => {
         console.log(value);
       }
       setUploadingMessage(true);
-      fetch("/api/upload", {
+      fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/upload", {
         method: "POST",
         body: formData,
       }).then(() => {

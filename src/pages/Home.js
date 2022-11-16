@@ -14,7 +14,7 @@ export function Home() {
   const [hideIntro, setHideIntro] = useState("");
 
   useEffect(() => {
-    fetch("/api/artwork")
+    fetch("https://sea-lion-app-fylpk.ondigitalocean.app/api/artwork")
       .then((res) => res.json())
       .then((data) => {
         setApprovedArtwork(data);

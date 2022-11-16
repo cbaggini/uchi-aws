@@ -63,7 +63,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                     component="img"
                     alt={artwork.title}
                     height="240"
-                    image={`/api/media/${artwork.content_link}`}
+                    image={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${artwork.content_link}`}
                     title={artwork.title}
                   />
                 )}
@@ -75,7 +75,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                     controls
                   >
                     <source
-                      src={`/api/media/${artwork.content_link}`}
+                      src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${artwork.content_link}`}
                       type="video/mp4"
                     />
                   </video>
@@ -84,7 +84,7 @@ const ArtistsStoryCards = ({ approvedArtwork }) => {
                   <div className="audio-player">
                     <ReactAudioPlayer
                       className={classes.audio}
-                      src={`/api/media/${artwork.content_link}`}
+                      src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${artwork.content_link}`}
                       controls
                     />
                   </div>

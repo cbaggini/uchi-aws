@@ -46,18 +46,23 @@ const ArtPopup = ({
             component="img"
             alt={title}
             height="240"
-            image={`/api/media/${content_link}`}
+            image={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${content_link}`}
             title={title}
           />
         )}
         {content_type === "video" && (
           <video width="100%" height="240" controls>
-            <source src={`/api/media/${content_link}`} type="video/mp4" />
+            <source
+              src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${content_link}`}
+              type="video/mp4"
+            />
           </video>
         )}
         {content_type === "audio" && (
           <audio controls style={{ display: "flex", width: "100%" }}>
-            <source src={`/api/media/${content_link}`} />
+            <source
+              src={`https://sea-lion-app-fylpk.ondigitalocean.app/api/media/${content_link}`}
+            />
           </audio>
         )}
         <Typography variant="h3" className={classes.title} gutterBottom>

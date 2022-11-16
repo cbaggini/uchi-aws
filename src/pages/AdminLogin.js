@@ -48,7 +48,7 @@ const AdminLogin = ({ setUser }) => {
   //Send a post api request to login admin
   const handleLogin = (e) => {
     e.preventDefault();
-    fetch(`/api/login`, {
+    fetch(`https://sea-lion-app-fylpk.ondigitalocean.app/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

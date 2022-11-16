@@ -28,7 +28,7 @@ const NewAdmin = ({ setCreateMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (username.length > 0 && email.length > 0) {
-      fetch(`/api/admin`, {
+      fetch(`https://sea-lion-app-fylpk.ondigitalocean.app/api/admin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
